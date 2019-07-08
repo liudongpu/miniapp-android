@@ -1,0 +1,104 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.1"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+
+
+apply plugin: 'maven'
+def MAVEN_LOCAL_PATH = 'https://repo.rdc.aliyun.com/repository/30432-release-eb5uQS/'
+def ARTIFACT_ID = 'mappandroid'
+def VERSION_NAME = android.defaultConfig.versionName
+//def VERSION_NAME = '0.0.1-SNAPSHOT'
+def GROUP_ID = 'com.uhutu.miniapp'
+def ACCOUNT = '0qKFqt'
+def PASSWORD = 'utIj11jpPf'
+
+
+//脚本：将Lib打成aar包上传至maven私有库
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url:MAVEN_LOCAL_PATH ){
+                authentication(userName: ACCOUNT, password: PASSWORD)
+            }
+            pom.project {
+                groupId GROUP_ID
+                artifactId ARTIFACT_ID
+                version VERSION_NAME
+                packaging 'aar'
+            }
+        }
+    }
+}
+
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        reactnative(MavenPublication) {
+
+            //Configure the publication here
+            artifacts = [file("$rootDir/node_modules/react-native/android/com/facebook/react/react-native/0.57.3/react-native-0.57.3.aar")]
+//            artifact("upload/velocity-1.6.4-dep.jar") {
+//                  classifier "dep"
+//            }
+            groupId "com.facebook.react"
+            artifactId "react-native"
+            version "0.57.3"
+
+        }
+    }
+
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url MAVEN_LOCAL_PATH
+            credentials {
+                username = ACCOUNT
+                password = PASSWORD
+            }
+        }
+    }
+}
+
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.facebook.react:react-native:0.57.3" // From node_modules
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    //implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+//project.ext.vectoricons = [iconFontsDir: "$rootDir/node_modules/react-native-vector-icons/Fonts"]
+//apply from: "../node_modules/react-native-vector-icons/fonts.gradle"
+
