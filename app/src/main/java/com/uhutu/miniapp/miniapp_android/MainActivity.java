@@ -1,14 +1,11 @@
 package com.uhutu.miniapp.miniapp_android;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.uhutu.miniapp.mappandroid.support.MiniappSupport;
-
-import java.io.File;
+import com.uhutu.miniapp.mappandroid.miniapp.MiniappSupport;
 
 public class MainActivity extends AppCompatActivity {
 

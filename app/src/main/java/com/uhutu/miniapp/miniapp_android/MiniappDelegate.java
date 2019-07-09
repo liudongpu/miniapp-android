@@ -1,17 +1,12 @@
 package com.uhutu.miniapp.miniapp_android;
 
-import android.os.Environment;
-import android.util.Log;
-
-import com.uhutu.miniapp.mappandroid.face.MiniappNativeDelegate;
+import com.uhutu.miniapp.mappandroid.face.MiniappEventDelegate;
 import com.uhutu.miniapp.mappandroid.model.NativeAppInfo;
 import com.uhutu.miniapp.mappandroid.model.NativeConfigInfo;
 import com.uhutu.miniapp.mappandroid.model.NativeOperateEvent;
 import com.uhutu.miniapp.mappandroid.model.NativeUserInfo;
 
-import java.io.File;
-
-public class MiniappDelegate implements MiniappNativeDelegate {
+public class MiniappDelegate implements MiniappEventDelegate {
 
     private final static String TAG="MiniappDelegate";
 

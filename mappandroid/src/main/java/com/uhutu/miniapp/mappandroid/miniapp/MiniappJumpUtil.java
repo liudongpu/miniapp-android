@@ -1,4 +1,4 @@
-package com.uhutu.miniapp.mappandroid.service;
+package com.uhutu.miniapp.mappandroid.miniapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,21 +23,19 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.uhutu.miniapp.mappandroid.defines.CommonConst;
+import com.uhutu.miniapp.mappandroid.face.IMiniappJumpUtil;
 import com.uhutu.miniapp.mappandroid.helper.DownloadUtil;
 import com.uhutu.miniapp.mappandroid.helper.StringUtils;
-import com.uhutu.miniapp.mappandroid.miniapp.MiniappMainActivity;
 import com.uhutu.miniapp.mappandroid.model.MiniappStructModel;
 import com.uhutu.miniapp.mappandroid.model.MiniappInfoModel;
 import com.uhutu.miniapp.mappandroid.model.NativeAppInfo;
 import com.uhutu.miniapp.mappandroid.model.NativeUserInfo;
 
-public class JumpPage {
+public class MiniappJumpUtil implements IMiniappJumpUtil {
 
 
-    private final  static String TAG="JumpPage";
+    private final  static String TAG="MiniappJumpUtil";
 
 
     private String localJumpUrl="";
@@ -114,10 +112,10 @@ public class JumpPage {
 
 
         String sTargetId=StringUtils.substringBetween(sUrl,"://",".app");
-        String sRequestUrl= GlobalService.getInstance().getNativeDelegate().upNativeConfigInfo().getBaseUrl().replace("/#/","/"+sTargetId+"/");
+        String sRequestUrl= MiniappEventInstance.getInstance().getNativeDelegate().upNativeConfigInfo().getBaseUrl().replace("/#/","/"+sTargetId+"/");
 
 
-        String sConfigPath=GlobalService.getInstance().getNativeDelegate().upNativeConfigInfo().getLocalPathDir();
+        String sConfigPath= MiniappEventInstance.getInstance().getNativeDelegate().upNativeConfigInfo().getLocalPathDir();
         if(StringUtils.isBlank(sConfigPath)){
             sConfigPath=activity.getApplicationContext().getFilesDir().getAbsolutePath() + File.separator;
         }
@@ -253,11 +251,11 @@ public class JumpPage {
 
 
     private void openMiniapp(MiniappStructModel structModel,Context activity){
-        Intent intent = new Intent(activity, MiniappMainActivity.class);
+        Intent intent = new Intent(activity, MiniappViewController.class);
 
-        NativeUserInfo userInfo= GlobalService.getInstance().getNativeDelegate().upNativeUserInfo();
+        NativeUserInfo userInfo= MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo();
 
-        NativeAppInfo appInfo=GlobalService.getInstance().getNativeDelegate().upNativeAppInfo();
+        NativeAppInfo appInfo= MiniappEventInstance.getInstance().getNativeDelegate().upNativeAppInfo();
 
          structModel.setUserToken( userInfo.getUserToken());
         structModel.setUserName( userInfo.getUserName());

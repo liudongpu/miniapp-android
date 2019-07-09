@@ -2,7 +2,6 @@ package com.uhutu.miniapp.mappandroid.miniapp;
 
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -11,7 +10,6 @@ import com.facebook.react.bridge.ReactMethod;
 import com.google.gson.Gson;
 import com.uhutu.miniapp.mappandroid.defines.CommonConst;
 import com.uhutu.miniapp.mappandroid.model.NativeOperateEvent;
-import com.uhutu.miniapp.mappandroid.service.GlobalService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -103,7 +101,7 @@ public class MiniappManagerBridge extends ReactContextBaseJavaModule {
                 case "nativePromiseToken": {
                     //map.put("token", SharedPreferencesUtils.getStringShareData("token"));
 
-                    map.put("token", GlobalService.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
+                    map.put("token", MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
                 }
                     break;
                 case "nativePromiseInfo": {

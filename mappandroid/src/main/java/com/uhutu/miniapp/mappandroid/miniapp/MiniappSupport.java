@@ -1,10 +1,8 @@
-package com.uhutu.miniapp.mappandroid.support;
+package com.uhutu.miniapp.mappandroid.miniapp;
 
 import android.content.Context;
 
-import com.uhutu.miniapp.mappandroid.face.MiniappNativeDelegate;
-import com.uhutu.miniapp.mappandroid.service.GlobalService;
-import com.uhutu.miniapp.mappandroid.service.JumpPage;
+import com.uhutu.miniapp.mappandroid.face.MiniappEventDelegate;
 
 
 /**
@@ -32,12 +30,12 @@ public class MiniappSupport {
      * @param iMiniappDelegate 回调类，一般可以静态
      * @param activity context对象
      */
-    public void jumpUrl(String sUrl, MiniappNativeDelegate iMiniappDelegate, Context activity){
+    public void jumpUrl(String sUrl, MiniappEventDelegate iMiniappDelegate, Context activity){
 
 
-        GlobalService.getInstance().setNativeDelegate(iMiniappDelegate);
+        MiniappEventInstance.getInstance().setNativeDelegate(iMiniappDelegate);
 
-        new JumpPage().jumpUrl(sUrl,activity);
+        new MiniappJumpUtil().jumpUrl(sUrl,activity);
     }
 
 

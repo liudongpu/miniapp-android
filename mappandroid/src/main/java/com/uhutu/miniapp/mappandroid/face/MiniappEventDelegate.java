@@ -9,7 +9,7 @@ import com.uhutu.miniapp.mappandroid.model.NativeUserInfo;
 /**
  * 原生APP需要实现这个接口类，用于小应用的回调逻辑方法
  */
-public interface MiniappNativeDelegate {
+public interface MiniappEventDelegate {
 
 
    /**

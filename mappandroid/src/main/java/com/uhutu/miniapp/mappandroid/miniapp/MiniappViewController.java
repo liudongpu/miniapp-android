@@ -25,9 +25,9 @@ import com.uhutu.miniapp.mappandroid.defines.CommonConst;
 import com.uhutu.miniapp.mappandroid.helper.StringUtils;
 import com.uhutu.miniapp.mappandroid.model.MiniappStructModel;
 
-public class MiniappMainActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
+public class MiniappViewController extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
-    private final static String TAG="MiniappMainActivity";
+    private final static String TAG="MiniappViewController";
 
 
     private ReactRootView mReactRootView;
@@ -117,7 +117,7 @@ bundle.putString("initapp", new Gson().toJson(structModel));
         */
 
         //显示Dialog
-        //loadingDialog = createLoadingDialog(MiniappMainActivity.this, "加载中...");
+        //loadingDialog = createLoadingDialog(MiniappViewController.this, "加载中...");
         setContentView(mReactRootView);
     }
 
