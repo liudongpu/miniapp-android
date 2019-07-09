@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //MiniappSupport.getInstance().jumpUrl("icome-miniapp://demo_one.app",miniappDelegate,getApplicationContext());
-                MiniappSupport.getInstance().jumpUrl("debug-miniapp:",miniappDelegate,getApplicationContext());
+                MiniappSupport.getInstance().jumpUrl("icome-miniapp://demo_one.app?a=1",miniappDelegate,getApplicationContext());
 
 
             }
