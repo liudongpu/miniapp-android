@@ -28,3 +28,30 @@ dependencies {
 
     implementation project(":mappandroid")
 }
+
+
+
+
+
+task miniappInit(){
+    if(file("$rootDir/../node_modules/versions/0.59.10.md").exists()){
+
+        println("miniappInit skip check")
+    }
+    else{
+        println("miniappInit clone soure")
+        exec {
+            commandLine "git","clone","--branch","v-0.59.10","https://code.aliyun.com/uhutu-miniapp/miniapp-libs.git","$rootDir/../node_modules/"
+        }
+    }
+};
+
+afterEvaluate {
+    tasks.matching {
+        it.name.equals('preBuild')
+    }.each { tk ->
+        tk.dependsOn(miniappInit);
+    }
+}
+
+
