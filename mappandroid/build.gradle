@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -60,13 +60,13 @@ publishing {
         reactnative(MavenPublication) {
 
             //Configure the publication here
-            artifacts = [file("$rootDir/node_modules/react-native/android/com/facebook/react/react-native/0.57.3/react-native-0.57.3.aar")]
+            artifacts = [file("$rootDir/../node_modules/react-native/android/com/facebook/react/react-native/0.59.10/react-native-0.59.10.aar")]
 //            artifact("upload/velocity-1.6.4-dep.jar") {
 //                  classifier "dep"
 //            }
             groupId "com.facebook.react"
             artifactId "react-native"
-            version "0.57.3"
+            version "0.59.10"
 
         }
     }

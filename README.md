@@ -37,3 +37,8 @@ afterEvaluate {
 }
 
 ```
+
+
+## 发布指南
+
+gradle执行mappandroid项目下的子task：uploadArchives
