@@ -34,8 +34,8 @@ public class MiniappDelegate implements MiniappEventDelegate {
     @Override
     public NativeConfigInfo upNativeConfigInfo() {
         NativeConfigInfo configInfo=new NativeConfigInfo();
-        //configInfo.setBaseUrl("http://icomeminiapp.srnpr.com/mapps/version/#/beta_android.json");
-configInfo.setBaseUrl("http://10.4.143.141:8870/build/version/#/alpha_android.json");
+        configInfo.setBaseUrl("http://icomeminiapp.srnpr.com/mapps/version/#/beta_android.json");
+        //configInfo.setBaseUrl("http://10.4.143.141:8870/build/version/#/alpha_android.json");
         //configInfo.setLocalPathDir(Environment.getExternalStorageDirectory().getAbsolutePath()+  File.separator);
 
         return configInfo;
