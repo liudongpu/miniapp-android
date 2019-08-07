@@ -101,6 +101,7 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 Bundle bundle=new Bundle();
 
+        structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
 bundle.putString("initapp", new Gson().toJson(structModel));
 
         // The string here (e.g. "MyReactNativeApp") has to match
@@ -235,6 +236,7 @@ bundle.putString("initapp", new Gson().toJson(structModel));
 
                     break;
                 case "nativeEventJump":
+
 
                     Log.d(TAG, "onReceive: "+jsonObject.get("targetUrl").getAsString());
 
