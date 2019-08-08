@@ -67,6 +67,10 @@ public class MiniappManagerBridge extends ReactContextBaseJavaModule {
             case "nativeEventLoadClose":
             case "nativeEventLoadOpen":
             case CommonConst.NATIVE_EVENT_JUMP:
+            {
+                MiniappEventInstance.getInstance().getNativeDelegate().jumpWtihParam(operateEvent);
+            }
+                break;
                 default:
                 {
                 Intent intent = new Intent(CommonConst.MINIAPP_NOTIFICATION_EVENT);
