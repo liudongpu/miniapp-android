@@ -38,11 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //miniappSupport.initConfig("http://icomeminiapp.srnpr.com/mapps/version/#/beta_android.json","","","",sLocalDir);
 
-
-
-
-                //MiniappSupport.getInstance().jumpUrl("icome-miniapp://demo_one.app",miniappDelegate,getApplicationContext());
-                MiniappSupport.getInstance().jumpUrl("icome-miniapp://demo_one.app?a=1",miniappDelegate,getApplicationContext());
+                MiniappSupport.getInstance().jumpUrl("debug-miniapp://",miniappDelegate,getApplicationContext());
+//                MiniappSupport.getInstance().jumpUrl("icome-miniapp://demo_one.app?a=1",miniappDelegate,getApplicationContext());
 
 
             }

@@ -45,4 +45,9 @@ public class MiniappDelegate implements MiniappEventDelegate {
     public boolean onNativeOperateEvent(NativeOperateEvent event) {
         return true;
     }
+
+    @Override
+    public void jumpWtihParam(String str){
+
+    }
 }

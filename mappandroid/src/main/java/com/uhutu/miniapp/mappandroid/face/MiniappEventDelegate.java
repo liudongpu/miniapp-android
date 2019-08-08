@@ -42,8 +42,7 @@ public interface MiniappEventDelegate {
 
 
 
-
-
+   public void jumpWtihParam(NativeOperateEvent event);
 
 
 
