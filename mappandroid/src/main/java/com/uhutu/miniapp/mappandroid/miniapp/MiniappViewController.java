@@ -101,6 +101,7 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 Bundle bundle=new Bundle();
 
+        structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
 bundle.putString("initapp", new Gson().toJson(structModel));
 
         // The string here (e.g. "MyReactNativeApp") has to match
@@ -117,9 +118,32 @@ bundle.putString("initapp", new Gson().toJson(structModel));
         */
 
         //显示Dialog
-        //loadingDialog = createLoadingDialog(MiniappViewController.this, "加载中...");
+        loadingDialog = createLoadingDialog(MiniappViewController.this, "加载中...");
+
+
         setContentView(mReactRootView);
     }
+
+
+
+    public Dialog createLoadingDialog(Activity activity,String sDialogText){
+
+        final android.app.ProgressDialog pd = new android.app.ProgressDialog(activity);
+
+    //设置提示信息
+            pd.setMessage(sDialogText);
+    //设置ProgressDialog 是否可以按返回键取消；
+            pd.setCancelable(true);
+            pd.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条
+    //显示ProgressDialog
+            pd.show();
+            return pd;
+    }
+
+    public void closeDialog(Dialog dialog){
+        dialog.cancel();
+    }
+
 
 
 
@@ -206,9 +230,13 @@ bundle.putString("initapp", new Gson().toJson(structModel));
             String sType = jsonObject.get(CommonConst.NOTIFICATION_EVENT_TYPE).getAsString();
             switch(sType){
                 case "nativeEventBack":
-                    mActivity.finish();
+                    if (mReactInstanceManager != null && mActivity!=null){
+                        mActivity.finish();
+                    }
+
                     break;
                 case "nativeEventJump":
+
 
                     Log.d(TAG, "onReceive: "+jsonObject.get("targetUrl").getAsString());
 
@@ -217,7 +245,7 @@ bundle.putString("initapp", new Gson().toJson(structModel));
                     break;
                 case "nativeEventLoadClose":
 
-                    //closeDialog(loadingDialog);
+                    closeDialog(loadingDialog);
                     break;
                 case "nativeEventLoadOpen":
                     loadingDialog.show();
