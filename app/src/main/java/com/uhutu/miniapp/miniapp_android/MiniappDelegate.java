@@ -47,7 +47,8 @@ public class MiniappDelegate implements MiniappEventDelegate {
     }
 
     @Override
-    public void jumpWtihParam(String str){
+    public void jumpWtihParam(NativeOperateEvent event) {
 
     }
+
 }
