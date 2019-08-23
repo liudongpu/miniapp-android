@@ -247,7 +247,7 @@ public class MiniappDownloadService {
 
 
 
-    private void openMiniapp(MiniappStructModel structModel,MiniappViewController activity){
+    private void openMiniapp(final MiniappStructModel structModel,final MiniappViewController activity){
         /*
         Intent intent = new Intent(activity, MiniappViewController.class);
 
@@ -267,8 +267,14 @@ public class MiniappDownloadService {
         activity.startActivity(intent);
         */
 
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.viewShow(structModel);
+            }
+        });
 
-        activity.viewShow(structModel);
+
 
 
 
