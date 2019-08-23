@@ -52,7 +52,15 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
         mReactRootView = new ReactRootView(this);
 
-        viewShow();
+
+        String sUrl=  getIntent().getStringExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
+
+
+
+        MiniappDownloadService downloadService=new MiniappDownloadService();
+        downloadService.jumpUrl(sUrl,this);
+
+        //viewShow();
 
        // downLoad("http://10.4.92.129:8870/build/zip/demo_one/18071401/android/demo_one_18071401.zip","demo_one_18071401.zip");
     }
@@ -62,13 +70,13 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 
 
-    private void viewShow(){
+    public void viewShow( MiniappStructModel structModel){
 
 
 
 
 
-         MiniappStructModel structModel=(MiniappStructModel)   getIntent().getSerializableExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
+         //MiniappStructModel structModel=(MiniappStructModel)   getIntent().getSerializableExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
 
         String sPathDir=  structModel.getBundlePath();
 
