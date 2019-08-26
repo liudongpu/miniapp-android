@@ -41,6 +41,22 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
 
     private String localJumpUrl="";
 
+
+
+    private void toastMessage(final Activity activity,final String sMessage){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast toast=Toast.makeText(activity,sMessage,Toast.LENGTH_SHORT);
+                toast.show();
+
+
+            }
+        });
+    }
+
+
+
     /**
      * 跳转链接
      * @param sUrl
@@ -155,13 +171,10 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                 //失败调用
                 Log.e(TAG, "onFailure: " ,e);
 
-                 activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast toast=Toast.makeText(activity,"网络请求失败",Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                });
+
+                toastMessage(activity,"网络请求失败");
+
+
 
 
 
