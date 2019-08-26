@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 
 import com.facebook.react.ReactInstanceManager;
@@ -127,6 +129,10 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 
     public Dialog createLoadingDialog(Activity activity,String sDialogText){
+
+
+
+
 
         final android.app.ProgressDialog pd = new android.app.ProgressDialog(activity);
 

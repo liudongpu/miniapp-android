@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -62,7 +63,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
      * @param sUrl
      * @param activity
      */
-    public void jumpUrl(String sUrl, Activity activity){
+    public void jumpUrl(String sUrl, Context activity){
 
 
 
@@ -129,7 +130,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
      * @param sUrl
      * @param activity
      */
-    private void targetMiniapp(final String sUrl,final Activity activity){
+    private void targetMiniapp(final String sUrl,final Context activity){
 
 
         final MiniappStructModel structModel=new MiniappStructModel();
@@ -155,7 +156,8 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
 
 
 
-        OkHttpClient okHttpClient = new OkHttpClient();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS).build();
         //2构造Request,
         //builder.get()代表的是get请求，url方法里面放的参数是一个网络地址
         Request.Builder builder = new Request.Builder();
@@ -172,7 +174,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                 Log.e(TAG, "onFailure: " ,e);
 
 
-                toastMessage(activity,"网络请求失败");
+                //toastMessage(activity,"网络请求失败");
 
 
 
