@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -133,6 +135,16 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 
 
+//        ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_main, null, false);
+//        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//        addContentView(view, params);
+
+
+        ProgressBar progressBar = new ProgressBar(this);
+        progressBar.setLayoutParams(new ViewGroup.LayoutParams(500, 500));
+        mReactRootView.addView(progressBar);
+
+
 
         final android.app.ProgressDialog pd = new android.app.ProgressDialog(activity);
 
@@ -144,6 +156,8 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         //显示ProgressDialog
         pd.show();
         return pd;
+
+//        return progressBar
     }
 
     public void closeDialog(Dialog dialog){
