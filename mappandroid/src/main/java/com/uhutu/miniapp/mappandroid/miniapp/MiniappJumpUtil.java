@@ -1,9 +1,10 @@
 package com.uhutu.miniapp.mappandroid.miniapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-
+import android.widget.Toast;
 
 
 import java.io.File;
@@ -45,7 +46,15 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
      * @param sUrl
      * @param activity
      */
-    public void jumpUrl(String sUrl, Context activity){
+    public void jumpUrl(String sUrl, Activity activity){
+
+
+
+
+        if(!MiniappLockSystem.getInstance().checkActivityLock(sUrl)){
+            return;
+        }
+
 
 
         localJumpUrl=sUrl;
@@ -104,7 +113,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
      * @param sUrl
      * @param activity
      */
-    private void targetMiniapp(final String sUrl,final Context activity){
+    private void targetMiniapp(final String sUrl,final Activity activity){
 
 
         final MiniappStructModel structModel=new MiniappStructModel();
@@ -145,6 +154,18 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
             public void onFailure(Call call, IOException e) {
                 //失败调用
                 Log.e(TAG, "onFailure: " ,e);
+
+                 activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast=Toast.makeText(activity,"网络请求失败",Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
+
+
+
             }
 
             @Override
@@ -267,6 +288,9 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
 
 
         activity.startActivity(intent);
+
+        MiniappLockSystem.getInstance().removeActivityLock(structModel.getEnvUrl());
+
     }
 
 

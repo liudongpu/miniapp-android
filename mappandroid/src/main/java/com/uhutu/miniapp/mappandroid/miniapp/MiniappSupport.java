@@ -1,5 +1,6 @@
 package com.uhutu.miniapp.mappandroid.miniapp;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.uhutu.miniapp.mappandroid.face.MiniappEventDelegate;
@@ -30,7 +31,7 @@ public class MiniappSupport {
      * @param iMiniappDelegate 回调类，一般可以静态
      * @param activity context对象
      */
-    public void jumpUrl(String sUrl, MiniappEventDelegate iMiniappDelegate, Context activity){
+    public void jumpUrl(String sUrl, MiniappEventDelegate iMiniappDelegate, Activity activity){
 
 
         MiniappEventInstance.getInstance().setNativeDelegate(iMiniappDelegate);

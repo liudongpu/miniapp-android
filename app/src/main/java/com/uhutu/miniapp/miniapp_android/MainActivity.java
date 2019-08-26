@@ -1,5 +1,6 @@
 package com.uhutu.miniapp.miniapp_android;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 //miniappSupport.initConfig("http://icomeminiapp.srnpr.com/mapps/version/#/beta_android.json","","","",sLocalDir);
 
                 //MiniappSupport.getInstance().jumpUrl("debug-miniapp://",miniappDelegate,getApplicationContext());
-                MiniappSupport.getInstance().jumpUrl("icome-miniapp://dream_career.app?a=1",miniappDelegate,getApplicationContext());
+                MiniappSupport.getInstance().jumpUrl("icome-miniapp://dream_career.app?a=1",miniappDelegate, MainActivity.this);
 
 
             }
