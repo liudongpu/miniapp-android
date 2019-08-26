@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 //MiniappSupport miniappSupport=new MiniappSupport();
 
                 //miniappSupport.initConfig("http://icomeminiapp.srnpr.com/mapps/version/#/beta_android.json","","","",sLocalDir);
-
-                //MiniappSupport.getInstance().jumpUrl("debug-miniapp://",miniappDelegate,getApplicationContext());
-                MiniappSupport.getInstance().jumpUrl("icome-miniapp://dream_career.app?a=1",miniappDelegate, MainActivity.this);
+                //MiniappSupport.getInstance().jumpUrl("debug-miniapp://?system_uec-init_router=url%3ffield_a1%3d%e5%ad%97%e6%ae%b5%e4%b8%80%e5%8f%b7%26field_a2%3d%e5%ad%97%e6%ae%b5%e4%ba%8c%e5%8f%b7",miniappDelegate,getApplicationContext());
+                MiniappSupport.getInstance().jumpUrl("debug-miniapp://",miniappDelegate,getApplicationContext());
+                //MiniappSupport.getInstance().jumpUrl("icome-miniapp://dream_career.app?a=1",miniappDelegate, MainActivity.this);
 
 
             }

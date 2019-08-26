@@ -97,7 +97,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
 
 
                     MiniappStructModel structModel=new MiniappStructModel();
-                    structModel.setBundlePath(StringUtils.substringAfter(sUrl,"://"));
+                    structModel.setBundlePath("");
                     structModel.setBundleView("MiniappPoject");
                     structModel.setEnvName("alpha");
                     structModel.setEnvUrl(sUrl);
