@@ -52,17 +52,9 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
         mReactRootView = new ReactRootView(this);
 
+        viewShow();
 
-        String sUrl=  getIntent().getStringExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
-
-
-
-        MiniappDownloadService downloadService=new MiniappDownloadService();
-        downloadService.jumpUrl(sUrl,this);
-
-        //viewShow();
-
-       // downLoad("http://10.4.92.129:8870/build/zip/demo_one/18071401/android/demo_one_18071401.zip","demo_one_18071401.zip");
+        // downLoad("http://10.4.92.129:8870/build/zip/demo_one/18071401/android/demo_one_18071401.zip","demo_one_18071401.zip");
     }
 
 
@@ -70,13 +62,13 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 
 
-    public void viewShow( MiniappStructModel structModel){
+    private void viewShow(){
 
 
 
 
 
-         //MiniappStructModel structModel=(MiniappStructModel)   getIntent().getSerializableExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
+        MiniappStructModel structModel=(MiniappStructModel)   getIntent().getSerializableExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
 
         String sPathDir=  structModel.getBundlePath();
 
@@ -107,10 +99,10 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         mReactInstanceManager = builder
                 .build();
 
-Bundle bundle=new Bundle();
+        Bundle bundle=new Bundle();
 
         structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
-bundle.putString("initapp", new Gson().toJson(structModel));
+        bundle.putString("initapp", new Gson().toJson(structModel));
 
         // The string here (e.g. "MyReactNativeApp") has to match
         // the string in AppRegistry.registerComponent() in index.js
@@ -138,14 +130,14 @@ bundle.putString("initapp", new Gson().toJson(structModel));
 
         final android.app.ProgressDialog pd = new android.app.ProgressDialog(activity);
 
-    //设置提示信息
-            pd.setMessage(sDialogText);
-    //设置ProgressDialog 是否可以按返回键取消；
-            pd.setCancelable(true);
-            pd.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条
-    //显示ProgressDialog
-            pd.show();
-            return pd;
+        //设置提示信息
+        pd.setMessage(sDialogText);
+        //设置ProgressDialog 是否可以按返回键取消；
+        pd.setCancelable(true);
+        pd.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条
+        //显示ProgressDialog
+        pd.show();
+        return pd;
     }
 
     public void closeDialog(Dialog dialog){
@@ -231,7 +223,7 @@ bundle.putString("initapp", new Gson().toJson(structModel));
             Log.d(TAG, "onReceive: "+sJson);
 
             JsonParser parser = new JsonParser();
-           JsonObject jsonObject=  parser.parse(sJson).getAsJsonObject();
+            JsonObject jsonObject=  parser.parse(sJson).getAsJsonObject();
 
 
 
