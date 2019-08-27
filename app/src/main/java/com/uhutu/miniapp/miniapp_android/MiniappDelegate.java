@@ -1,10 +1,14 @@
 package com.uhutu.miniapp.miniapp_android;
 
 import com.uhutu.miniapp.mappandroid.face.MiniappEventDelegate;
+import com.uhutu.miniapp.mappandroid.miniapp.MiniappJumpUtil;
 import com.uhutu.miniapp.mappandroid.model.NativeAppInfo;
 import com.uhutu.miniapp.mappandroid.model.NativeConfigInfo;
 import com.uhutu.miniapp.mappandroid.model.NativeOperateEvent;
 import com.uhutu.miniapp.mappandroid.model.NativeUserInfo;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MiniappDelegate implements MiniappEventDelegate {
 
@@ -48,6 +52,11 @@ public class MiniappDelegate implements MiniappEventDelegate {
 
     @Override
     public void jumpWtihParam(NativeOperateEvent event) {
+
+        Map<String,String> map=new HashMap<>();
+        map.put("aaa","bbb");
+
+        new MiniappJumpUtil().sendNativeNotice("notice_abc",map);
 
     }
 

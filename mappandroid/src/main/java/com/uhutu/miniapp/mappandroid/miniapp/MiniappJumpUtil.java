@@ -3,6 +3,7 @@ package com.uhutu.miniapp.mappandroid.miniapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -55,6 +57,15 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
             }
         });
     }
+
+
+    public void sendNativeNotice(String sListencerName, Map<String,String> map){
+        map.put("miniapp_lisenter_name",sListencerName);
+        Message msg=new Message();
+        msg.obj=map;
+        MiniappNoticeBridge.mHandler.sendMessage(msg);
+    }
+
 
 
 

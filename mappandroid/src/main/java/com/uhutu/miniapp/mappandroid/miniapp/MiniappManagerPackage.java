@@ -29,6 +29,7 @@ public class MiniappManagerPackage  implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new MiniappManagerBridge(reactContext));
+        modules.add(new MiniappNoticeBridge(reactContext));
 
         return modules;
     }

@@ -12,6 +12,9 @@ public class CommonConst {
     public  final  static String MINIAPP_MANAGER_BRIDGE ="MiniappManagerBridge";
 
 
+    public  final  static String MINIAPP_NOTICE_BRIDGE ="MiniappNoticeBridge";
+
+
     /**
      * 定义全局的通知事件名称
      */
