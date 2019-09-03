@@ -84,7 +84,7 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModulePath("index")
 
-
+                .setCurrentActivity(MiniappViewController.this)
                 .addPackage(new MainReactPackage())
                 .addPackage(new MiniappManagerPackage())
                 //.setUseDeveloperSupport(BuildConfig.DEBUG)
