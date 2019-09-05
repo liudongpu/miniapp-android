@@ -61,11 +61,9 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
     }
 
 
+    @Deprecated
     public void sendNativeNotice(String sListencerName, Map<String,String> map){
-        map.put("miniapp_lisenter_name",sListencerName);
-        Message msg=new Message();
-        msg.obj=map;
-        MiniappNoticeBridge.mHandler.sendMessage(msg);
+        MiniappSupport.getInstance().sendNativeNotice(sListencerName,map);
     }
 
 
@@ -214,12 +212,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                 //这里是特殊流程代码  如果存在back字段 则直接调用跳转back路径 用于特殊情况不可用时手动操作 这段代码仅用于紧急情况 常规逻辑不启用
                 if(StringUtils.isNotBlank(upgradeModel.getBack())){
 
-                    NativeOperateEvent operateEvent=new NativeOperateEvent();
-                    operateEvent.setEventType("nativeEventJump");
-                    Map<String,String> mJump=new HashMap<>();
-                    mJump.put("targetUrl",upgradeModel.getBack());
-                    operateEvent.setEventParam(new Gson().toJson(mJump));
-                    MiniappEventInstance.getInstance().getNativeDelegate().jumpWtihParam(operateEvent);
+                    MiniappSupport.getInstance().delegateBackJump(upgradeModel.getBack());
 
                     return;
 
