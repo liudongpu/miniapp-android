@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
@@ -34,6 +35,7 @@ import com.uhutu.miniapp.mappandroid.helper.StringUtils;
 import com.uhutu.miniapp.mappandroid.model.MiniappStructModel;
 import com.uhutu.miniapp.mappandroid.model.MiniappInfoModel;
 import com.uhutu.miniapp.mappandroid.model.NativeAppInfo;
+import com.uhutu.miniapp.mappandroid.model.NativeOperateEvent;
 import com.uhutu.miniapp.mappandroid.model.NativeUserInfo;
 
 public class MiniappJumpUtil implements IMiniappJumpUtil {
@@ -206,6 +208,23 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
 
 
                 final  MiniappInfoModel upgradeModel=new Gson().fromJson(str,MiniappInfoModel.class);
+
+
+
+                //这里是特殊流程代码  如果存在back字段 则直接调用跳转back路径 用于特殊情况不可用时手动操作 这段代码仅用于紧急情况 常规逻辑不启用
+                if(StringUtils.isNotBlank(upgradeModel.getBack())){
+
+                    NativeOperateEvent operateEvent=new NativeOperateEvent();
+                    operateEvent.setEventType("nativeEventJump");
+                    Map<String,String> mJump=new HashMap<>();
+                    mJump.put("targetUrl",upgradeModel.getBack());
+                    operateEvent.setEventParam(new Gson().toJson(mJump));
+                    MiniappEventInstance.getInstance().getNativeDelegate().jumpWtihParam(operateEvent);
+
+                    return;
+
+                }
+
 
 
                 String sBasePathName= sLocalPath+ CommonConst.STORAGE_START_NAME;

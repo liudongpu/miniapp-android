@@ -20,19 +20,71 @@ package com.uhutu.miniapp.mappandroid.model;
 public class MiniappInfoModel {
 
 
+    /**
+     * 小应用编号  一般由[group]_[name] 组成
+     */
     private String id;
 
+    /**
+     * 版本编码  用于版本升级标记的判断
+     */
     private int code;
+
+    /**
+     * 版本号  用于显示
+     */
     private String version;
+    /**
+     * 名字
+     */
     private String name;
+    /**
+     * 分组
+     */
     private String group;
+    /**
+     * 功能
+     */
     private String feature;
+    /**
+     * 描述信息
+     */
     private String info;
+    /**
+     * 压缩包下载地址
+     */
     private String url;
+    /**
+     * 文件名
+     */
     private String file;
+    /**
+     * 环境标记  alpha,beta,preview,release
+     */
     private String env;
+    /**
+     * 初始视图  一般写死为MiniappPoject
+     */
     private String view;
+    /**
+     * 文件夹地址
+     */
     private String folder;
+
+    /**
+     * 备用地址 这个字段手动设置，一般为空  如果存在这个字段并且值不为空时 优先调用该操作冗余
+     */
+    private String back;
+
+    public String getBack() {
+        return back;
+    }
+
+    public void setBack(String back) {
+        this.back = back;
+    }
+
+
 
 
     public String getId() {
