@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 //MiniappSupport.getInstance().jumpUrl("icome-miniapp://dream_career.app?a=1",miniappDelegate, MainActivity.this);
 
 
+
+
             }
         });
 

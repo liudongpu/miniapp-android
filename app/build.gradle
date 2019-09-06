@@ -39,18 +39,14 @@ dependencies {
 }
 
 
-
-
-
-task miniappInit(){
-    if(file("$rootDir/../node_modules/versions/0.59.10.md").exists()){
+task miniappInit() {
+    if (file("$rootDir/../node_modules/versions/0.59.10.md").exists()) {
 
         println("miniappInit skip check")
-    }
-    else{
+    } else {
         println("miniappInit clone soure")
         exec {
-            commandLine "git","clone","--branch","v-0.59.10","https://code.aliyun.com/uhutu-miniapp/miniapp-libs.git","$rootDir/../node_modules/"
+            commandLine "git", "clone", "--branch", "v-0.59.10", "https://code.aliyun.com/uhutu-miniapp/miniapp-libs.git", "$rootDir/../node_modules/"
         }
     }
 };
@@ -62,5 +58,3 @@ afterEvaluate {
         tk.dependsOn(miniappInit);
     }
 }
-
-

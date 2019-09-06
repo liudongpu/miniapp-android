@@ -1,5 +1,7 @@
 package com.uhutu.miniapp.miniapp_android;
 
+import android.content.Intent;
+
 import com.uhutu.miniapp.mappandroid.face.MiniappEventDelegate;
 import com.uhutu.miniapp.mappandroid.miniapp.MiniappJumpUtil;
 import com.uhutu.miniapp.mappandroid.model.NativeAppInfo;
@@ -53,10 +55,14 @@ public class MiniappDelegate implements MiniappEventDelegate {
     @Override
     public void jumpWtihParam(NativeOperateEvent event) {
 
-        Map<String,String> map=new HashMap<>();
-        map.put("aaa","bbb");
 
-        new MiniappJumpUtil().sendNativeNotice("notice_abc",map);
+
+        Intent intent = new Intent(event.getSourceActivity(), SubActivity.class);
+        event.getSourceActivity().startActivity(intent);
+
+
+
+
 
     }
 

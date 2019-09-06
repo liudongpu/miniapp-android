@@ -47,7 +47,7 @@ public class MiniappManagerBridge extends ReactContextBaseJavaModule {
         operateEvent.setEventType(sType);
         operateEvent.setEventParam(sJson);
         operateEvent.setEventSet(sOption);
-
+        operateEvent.setSourceActivity(getCurrentActivity());
 
 
 
@@ -66,6 +66,7 @@ public class MiniappManagerBridge extends ReactContextBaseJavaModule {
             case CommonConst.NATIVE_EVENT_JUMP:
             {
                 MiniappEventInstance.getInstance().getNativeDelegate().jumpWtihParam(operateEvent);
+
             }
                 break;
                 default:

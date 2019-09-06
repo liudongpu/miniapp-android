@@ -1,5 +1,7 @@
 package com.uhutu.miniapp.mappandroid.model;
 
+import android.app.Activity;
+
 /**
  * 原生操作相关
  */
@@ -20,6 +22,12 @@ public class NativeOperateEvent {
      * 操作的设置
      */
     private String eventSet;
+
+
+
+
+    private Activity sourceActivity;
+
 
     public String getEventType() {
         return eventType;
@@ -43,6 +51,14 @@ public class NativeOperateEvent {
 
     public void setEventSet(String eventSet) {
         this.eventSet = eventSet;
+    }
+
+    public Activity getSourceActivity() {
+        return sourceActivity;
+    }
+
+    public void setSourceActivity(Activity sourceActivity) {
+        this.sourceActivity = sourceActivity;
     }
 
 

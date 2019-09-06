@@ -66,9 +66,14 @@ public class MiniappSupport {
      * @param map
      */
     public void sendNativeNotice(String sListencerName, Map<String,String> map){
-        map.put("miniapp_lisenter_name",sListencerName);
+
+
+        Map<String,String> mapMessage=new HashMap<>();
+        mapMessage.putAll(map);
+        mapMessage.put("miniapp_lisenter_name",sListencerName);
+
         Message msg=new Message();
-        msg.obj=map;
+        msg.obj=mapMessage;
         MiniappNoticeBridge.mHandler.sendMessage(msg);
     }
 
