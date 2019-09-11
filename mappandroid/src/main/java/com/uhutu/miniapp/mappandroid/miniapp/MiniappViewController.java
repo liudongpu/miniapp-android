@@ -140,9 +140,9 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 //        addContentView(view, params);
 
 
-        ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setLayoutParams(new ViewGroup.LayoutParams(500, 500));
-        mReactRootView.addView(progressBar);
+        //ProgressBar progressBar = new ProgressBar(this);
+        //progressBar.setLayoutParams(new ViewGroup.LayoutParams(500, 500));
+        //mReactRootView.addView(progressBar);
 
 
 
