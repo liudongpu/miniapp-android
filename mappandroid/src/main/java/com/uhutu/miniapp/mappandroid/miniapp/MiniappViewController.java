@@ -43,6 +43,11 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
     private EventReceiver receiver;
     private Dialog loadingDialog;
 
+    private MiniappStructModel structModel;
+
+
+    private boolean flagViewShow=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,24 +60,7 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 
         mReactRootView = new ReactRootView(this);
-
-        viewShow();
-
-        // downLoad("http://10.4.92.129:8870/build/zip/demo_one/18071401/android/demo_one_18071401.zip","demo_one_18071401.zip");
-    }
-
-
-
-
-
-
-    private void viewShow(){
-
-
-
-
-
-        MiniappStructModel structModel=(MiniappStructModel)   getIntent().getSerializableExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
+         structModel=(MiniappStructModel)   getIntent().getSerializableExtra(CommonConst.NITIFICATION_EVENT_STRUCT);
 
         String sPathDir=  structModel.getBundlePath();
 
@@ -103,14 +91,46 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         mReactInstanceManager = builder
                 .build();
 
+
+
+        // The string here (e.g. "MyReactNativeApp") has to match
+        // the string in AppRegistry.registerComponent() in index.js
+
+        loadingDialog = createLoadingDialog(MiniappViewController.this, "加载中...");
+
+        if(StringUtils.isBlank(structModel.getLoadModel())){
+            viewShow();
+        }
+
+        //viewShow();
+
+        // downLoad("http://10.4.92.129:8870/build/zip/demo_one/18071401/android/demo_one_18071401.zip","demo_one_18071401.zip");
+    }
+
+
+
+
+
+
+    private void viewShow(){
+
+
+        if(!flagViewShow){
+            flagViewShow=true;
+        }
+        else{
+            return ;
+        }
+
+
         Bundle bundle=new Bundle();
 
         structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
         bundle.putString("initapp", new Gson().toJson(structModel));
 
-        // The string here (e.g. "MyReactNativeApp") has to match
-        // the string in AppRegistry.registerComponent() in index.js
         mReactRootView.startReactApplication(mReactInstanceManager, structModel.getBundleView(), bundle);
+
+
 
         /*
         这个代码是设置透明状态栏
@@ -122,7 +142,7 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         */
 
         //显示Dialog
-        loadingDialog = createLoadingDialog(MiniappViewController.this, "加载中...");
+
 
 
         setContentView(mReactRootView);
@@ -234,10 +254,16 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         @Override
         public void onReceive(Context context, Intent intent) {
 
+
+
+
+
             //mActivity.finish();
 
 
             String sJson=intent.getStringExtra(CommonConst.NOTIFICATION_EVENT_NAME);
+
+
 
 
             Log.d(TAG, "onReceive: "+sJson);
@@ -249,6 +275,12 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
             String sType = jsonObject.get(CommonConst.NOTIFICATION_EVENT_TYPE).getAsString();
             switch(sType){
+
+                case "systemLoadView":{
+                    viewShow();
+                }
+                break;
+
                 case "nativeEventBack":
                     if (mReactInstanceManager != null && mActivity!=null){
                         mActivity.finish();

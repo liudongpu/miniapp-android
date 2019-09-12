@@ -244,6 +244,11 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                     String sZipFileName=StringUtils.substringAfterLast(upgradeModel.getUrl(),"/");
 
 
+                    structModel.setLoadModel("lazy");
+
+                    openMiniapp(structModel,activity);
+
+
                     downloadFile(structModel,activity,upgradeModel.getUrl(),sBasePathName+ File.separator+"zip",sZipFileName,sBundlePath);
 
 
@@ -289,7 +294,12 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                     Log.i(TAG, "downloadFile:onDownloadSuccess: " + sZipFolder + File.separator + sZipFile);
 
 
-                    openMiniapp(structModel,activity);
+                    //openMiniapp(structModel,activity);
+
+                    //下载完成后发布一个通知
+                    Intent intent = new Intent(CommonConst.MINIAPP_NOTIFICATION_EVENT);
+                    intent.putExtra(CommonConst.NOTIFICATION_EVENT_NAME, "{\""+CommonConst.NOTIFICATION_EVENT_TYPE+"\":\"systemLoadView\"}");
+                    activity.sendBroadcast(intent);
 
                 }
 
