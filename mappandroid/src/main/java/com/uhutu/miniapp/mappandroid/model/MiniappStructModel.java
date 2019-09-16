@@ -27,6 +27,12 @@ public class MiniappStructModel implements Serializable {
     private String miniInfo;
 
 
+    /**
+     * 加载模型  默认为空  如果为lazy的话则延迟加载显示 一般用于下载完成后的通知
+     */
+    private String loadModel;
+
+
     public String getMiniInfo() {
         return miniInfo;
     }
@@ -112,7 +118,13 @@ public class MiniappStructModel implements Serializable {
     }
 
 
+    public String getLoadModel() {
+        return loadModel;
+    }
 
+    public void setLoadModel(String loadModel) {
+        this.loadModel = loadModel;
+    }
 
 
 
