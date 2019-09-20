@@ -22,7 +22,7 @@ public class MiniappDelegate implements MiniappEventDelegate {
         NativeUserInfo userInfo=new NativeUserInfo();
         userInfo.setLoginName("simpleLogin");
         userInfo.setUserName("simpleUser");
-        userInfo.setUserToken("6c58411b68f8c9802ab3304ff49cc032");
+        userInfo.setUserToken("8a9e3ccc74758d5736abbaa651baaecb");
 
         return userInfo;
     }
