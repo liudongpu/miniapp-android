@@ -1,14 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.alipay.portal'
+apply plugin: 'com.alipay.apollo.baseline.update'
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.uhutu.miniapp.miniapp_android"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 18
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
     signingConfigs {
         release {
@@ -49,6 +52,10 @@ task miniappInit() {
             commandLine "git", "clone", "--branch", "v-0.59.10", "https://code.aliyun.com/uhutu-miniapp/miniapp-libs.git", "$rootDir/../node_modules/"
         }
     }
+}
+
+mpaascomponents {
+    excludeDependencies = ['com.alipay.android.phone.thirdparty:androidsupport-build', 'com.alipay.android.phone.thirdparty:androidsupportrecyclerview-build']
 };
 
 afterEvaluate {

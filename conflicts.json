@@ -1,0 +1,68 @@
+[
+	{
+		"conflictParentNodes":[],
+		"group":"check maven",
+		"success":true,
+		"summary":"com.alipay.android.phone.thirdparty:fastjson-build:null check successfully"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check maven",
+		"success":true,
+		"summary":"com.alipay.android.phone.thirdparty:wire-build:null check successfully"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check so",
+		"success":true,
+		"summary":"libdatabase_sqlcrypto check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check aars",
+		"success":true,
+		"summary":"libdatabase_sqlcrypto check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check aars",
+		"success":true,
+		"summary":"fastjson check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check aars",
+		"success":true,
+		"summary":"utdid check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check aars",
+		"success":true,
+		"summary":"lbs-build check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check Jars",
+		"success":true,
+		"summary":"fastjson check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check Jars",
+		"success":true,
+		"summary":"utdid check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check Jars",
+		"success":true,
+		"summary":"lbs-build check success"
+	},
+	{
+		"conflictParentNodes":[],
+		"group":"check Jars",
+		"success":true,
+		"summary":"libdatabase_sqlcrypto check success"
+	}
+]
