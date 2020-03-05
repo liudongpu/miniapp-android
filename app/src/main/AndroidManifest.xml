@@ -3,7 +3,7 @@
     package="com.uhutu.miniapp.miniapp_android">
 
     <application
-        android:name="com.alipay.mobile.framework.quinoxless.QuinoxlessApplication"
+        android:name="com.uhutu.miniapp.miniapp_android.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,12 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="mpaas.quinoxless.extern.application"
-            android:value="com.uhutu.miniapp.miniapp_android.MyApplication"
-            />
+        <meta-data android:name="UCSDKAppKey" android:value="cqJs7ULUPzaQvoiZdgFEZinsp3qZeBbJJWbmxKwGWX2lc3DYh/8qu134TUUD48MZBGLa4ZG89SbzWR4MZ4ztHw=="/>
+
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <meta-data android:name="UCSDKAppKey" android:value="cqJs7ULUPzaQvoiZdgFEZinsp3qZeBbJJWbmxKwGWX2lc3DYh/8qu134TUUD48MZBGLa4ZG89SbzWR4MZ4ztHw=="/>
+
 
 </manifest>

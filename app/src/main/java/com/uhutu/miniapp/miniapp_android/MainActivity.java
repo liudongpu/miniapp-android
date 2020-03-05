@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                //MPNebula.startUrl("https://www.baidu.com");
+                MPNebula.startUrl("https://www.baidu.com");
 
-                String appId = "您的小程序的 appId";
-                Bundle bundle = new Bundle();
+                //String appId = "1001100110011001";
+                //Bundle bundle = new Bundle();
 
-                LauncherApplicationAgent.getInstance().getMicroApplicationContext().startApp(null, appId, bundle);
+                //LauncherApplicationAgent.getInstance().getMicroApplicationContext().startApp(null, appId, bundle);
             }
         });
 
