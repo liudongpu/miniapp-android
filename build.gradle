@@ -37,7 +37,7 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
         maven {url "https://maven.aliyun.com/repository/public"}
-        google()
+
         maven {
             url 'http://maven.aliyun.com/nexus/content/groups/public/'
             name 'aliyun'
@@ -54,6 +54,7 @@ allprojects {
                 password 'mrk8929'
             }
         }
+        google()
         //jcenter()
 
 

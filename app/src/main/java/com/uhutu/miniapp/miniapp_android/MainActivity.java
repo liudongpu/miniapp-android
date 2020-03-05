@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.alipay.mobile.framework.LauncherApplicationAgent;
+import com.mpaas.nebula.adapter.api.MPNebula;
 import com.uhutu.miniapp.mappandroid.miniapp.MiniappSupport;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +51,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        Button btn3 = (Button) findViewById(R.id.button3);
+
+
+
+        btn3 .setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                //MPNebula.startUrl("https://www.baidu.com");
+
+                String appId = "您的小程序的 appId";
+                Bundle bundle = new Bundle();
+
+                LauncherApplicationAgent.getInstance().getMicroApplicationContext().startApp(null, appId, bundle);
+            }
+        });
+
 
     }
 }
