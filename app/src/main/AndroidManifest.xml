@@ -29,7 +29,5 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <meta-data android:name="UCSDKAppKey" android:value="cqJs7ULUPzaQvoiZdgFEZinsp3qZeBbJJWbmxKwGWX2lc3DYh/8qu134TUUD48MZBGLa4ZG89SbzWR4MZ4ztHw=="/>
-
 
 </manifest>
