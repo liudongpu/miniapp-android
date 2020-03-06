@@ -17,3 +17,4 @@ fastlane/report.xml
 .bundle
 vendor
 Gemfile.lock
+app/debug
