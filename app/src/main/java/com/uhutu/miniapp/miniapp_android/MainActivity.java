@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.alipay.mobile.framework.LauncherApplicationAgent;
+import com.alipay.mobile.nebula.provider.H5AppCenterPresetProvider;
+import com.alipay.mobile.nebula.util.H5Utils;
 import com.mpaas.nebula.adapter.api.MPNebula;
 import com.uhutu.miniapp.mappandroid.miniapp.MiniappSupport;
 
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //MPNebula.startUrl("https://www.baidu.com");
+
+                H5Utils.setProvider(H5AppCenterPresetProvider.class.getName(), new H5AppCenterPresetProviderImpl());
+
 
                 String appId = "1001100110011001";
                 Bundle bundle = new Bundle();
