@@ -3,6 +3,8 @@ apply plugin: 'com.alipay.portal'
 portal {
     allSlinks true
     mergeAssets true
+    enableNebulaMetaInfo true
+    useMetaInfoClass true
 }
 apply plugin: 'com.alipay.apollo.baseline.update'
 mpaascomponents{
