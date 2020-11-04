@@ -53,8 +53,6 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         mReactRootView = new ReactRootView(this);
 
         viewShow();
-
-       // downLoad("http://10.4.92.129:8870/build/zip/demo_one/18071401/android/demo_one_18071401.zip","demo_one_18071401.zip");
     }
 
 
@@ -99,10 +97,10 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
         mReactInstanceManager = builder
                 .build();
 
-Bundle bundle=new Bundle();
+        Bundle bundle=new Bundle();
 
-        structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
-bundle.putString("initapp", new Gson().toJson(structModel));
+//        structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
+        bundle.putString("initapp", new Gson().toJson(structModel));
 
         // The string here (e.g. "MyReactNativeApp") has to match
         // the string in AppRegistry.registerComponent() in index.js
