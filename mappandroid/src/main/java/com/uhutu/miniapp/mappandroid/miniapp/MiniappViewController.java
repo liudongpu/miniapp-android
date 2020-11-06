@@ -124,8 +124,7 @@ public class MiniappViewController extends AppCompatActivity implements DefaultH
 
 
         Bundle bundle=new Bundle();
-
-        structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
+//        structModel.setUserToken(MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo().getUserToken());
         bundle.putString("initapp", new Gson().toJson(structModel));
 
         mReactRootView.startReactApplication(mReactInstanceManager, structModel.getBundleView(), bundle);
