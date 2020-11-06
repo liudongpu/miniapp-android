@@ -3,6 +3,8 @@ package com.uhutu.miniapp.mappandroid.miniapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
@@ -102,6 +104,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                 case "icome-miniapp":
 
 
+
                     targetMiniapp(sUrl,activity);
                     break;
                 case "debug-miniapp":
@@ -197,69 +200,65 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
 
-                String str = response.body().string();
+                final String str = response.body().string();
                 Log.d(TAG, "onResponse: " +str);
 
                 //JSONObject jsonObject= JSON.parseObject(str);
 
                 //JsonObject jsonObject= new JsonParser().parse(str).getAsJsonObject();
 
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
 
-                final  MiniappInfoModel upgradeModel=new Gson().fromJson(str,MiniappInfoModel.class);
+                        final  MiniappInfoModel upgradeModel=new Gson().fromJson(str,MiniappInfoModel.class);
 
+                        //这里是特殊流程代码  如果存在back字段 则直接调用跳转back路径 用于特殊情况不可用时手动操作 这段代码仅用于紧急情况 常规逻辑不启用
+                        if(StringUtils.isNotBlank(upgradeModel.getBack())){
 
+                            MiniappSupport.getInstance().delegateBackJump(upgradeModel.getBack());
 
-                //这里是特殊流程代码  如果存在back字段 则直接调用跳转back路径 用于特殊情况不可用时手动操作 这段代码仅用于紧急情况 常规逻辑不启用
-                if(StringUtils.isNotBlank(upgradeModel.getBack())){
+                            return;
 
-                    MiniappSupport.getInstance().delegateBackJump(upgradeModel.getBack());
-
-                    return;
-
-                }
-
-
-
-                String sBasePathName= sLocalPath+ CommonConst.STORAGE_START_NAME;
-
-                String sBundlePath=sBasePathName+ File.separator+"bundle"+ File.separator+upgradeModel.getFolder();
+                        }
 
 
-                //localFilePath=sBundlePath+File.separator+jsonObject.getString("file");
+
+                        String sBasePathName= sLocalPath+ CommonConst.STORAGE_START_NAME;
+
+                        String sBundlePath=sBasePathName+ File.separator+"bundle"+ File.separator+upgradeModel.getFolder();
+
+                        structModel.setBundlePath(sBundlePath+ File.separator+upgradeModel.getFile());
+                        structModel.setBundleView(upgradeModel.getView());
+                        structModel.setEnvName(upgradeModel.getEnv());
+                        structModel.setEnvUrl(sUrl);
+                        structModel.setMiniInfo(str);
+
+                        File fLocalBundle=new File(structModel.getBundlePath());
+
+                        //这里简单判断文件存在  后续添加Sqlite的校验代码
+                        if(!fLocalBundle.exists()){
+
+                            String sZipFileName=StringUtils.substringAfterLast(upgradeModel.getUrl(),"/");
 
 
-                structModel.setBundlePath(sBundlePath+ File.separator+upgradeModel.getFile());
+                            structModel.setLoadModel("lazy");
 
-                structModel.setBundleView(upgradeModel.getView());
-                structModel.setEnvName(upgradeModel.getEnv());
-                structModel.setEnvUrl(sUrl);
-                structModel.setMiniInfo(str);
+                            openMiniapp(structModel,activity);
 
 
-                File fLocalBundle=new File(structModel.getBundlePath());
-
-                //这里简单判断文件存在  后续添加Sqlite的校验代码
-                if(!fLocalBundle.exists()){
-
-                    String sZipFileName=StringUtils.substringAfterLast(upgradeModel.getUrl(),"/");
+                            downloadFile(structModel,activity,upgradeModel.getUrl(),sBasePathName+ File.separator+"zip",sZipFileName,sBundlePath);
 
 
-                    structModel.setLoadModel("lazy");
-
-                    openMiniapp(structModel,activity);
-
-
-                    downloadFile(structModel,activity,upgradeModel.getUrl(),sBasePathName+ File.separator+"zip",sZipFileName,sBundlePath);
+                        }
+                        else{
 
 
-                }
-                else{
+                            openMiniapp(structModel,activity);
 
-
-                    openMiniapp(structModel,activity);
-
-                }
-
+                        }
+                    }
+                });
             }
         });
     }
@@ -297,9 +296,14 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
                     //openMiniapp(structModel,activity);
 
                     //下载完成后发布一个通知
-                    Intent intent = new Intent(CommonConst.MINIAPP_NOTIFICATION_EVENT);
-                    intent.putExtra(CommonConst.NOTIFICATION_EVENT_NAME, "{\""+CommonConst.NOTIFICATION_EVENT_TYPE+"\":\"systemLoadView\"}");
-                    activity.sendBroadcast(intent);
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(CommonConst.MINIAPP_NOTIFICATION_EVENT);
+                            intent.putExtra(CommonConst.NOTIFICATION_EVENT_NAME, "{\""+CommonConst.NOTIFICATION_EVENT_TYPE+"\":\"systemLoadView\"}");
+                            activity.sendBroadcast(intent);
+                        }
+                    });
 
                 }
 
@@ -320,6 +324,7 @@ public class MiniappJumpUtil implements IMiniappJumpUtil {
 
 
     private void openMiniapp(MiniappStructModel structModel,Context activity){
+
         Intent intent = new Intent(activity, MiniappViewController.class);
 
         NativeUserInfo userInfo= MiniappEventInstance.getInstance().getNativeDelegate().upNativeUserInfo();
